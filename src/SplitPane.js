@@ -157,14 +157,6 @@ export default SplitPane;
     
 
 
-//     return (
-//       <div {...props} className="split-pane-left" ref={topRef}>
-//         <div className="canvas-container">
-//           <Canvas {...size} settings={settings} text={text}/>
-//         </div>
-//       </div>
-//     );
-//   };
 
 // export const SplitPaneRight = (rightText,... props) => {
 //     const settings = useRef({

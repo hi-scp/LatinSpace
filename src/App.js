@@ -5,7 +5,6 @@ import SplitPane, {
   SplitPaneLeft,
   SplitPaneRight,
   SplitPaneTop,
-  SplitPaneThird,
 } from "./SplitPane";
 import "./App.css";
 
