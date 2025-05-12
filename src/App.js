@@ -10,10 +10,64 @@ import SplitPane, {
 import "./App.css";
 
 function App() {
-  return(<p>hey</p>)
+  return (
+    <div className="App">
+      <SplitPane className="split-pane-col">
+        <SplitPaneTop/>
+        <Divider className="separator-row" />
+        <SplitPaneBottom>
+          <SplitPane className="split-pane-row">
+            <SplitPaneLeft/>
+            <Divider className="separator-col" />
+            <SplitPaneRight/>
+          </SplitPane>
+        </SplitPaneBottom>
+      </SplitPane>
+    </div>
+  );
 }
 
 export default App
+
+
+
+
+
+// function App() {
+//   const [showThirdPanel, setShowThirdPanel] = useState(false);
+//   const [leftText, setLeftText] = useState("Hello, Left!");
+//   const [rightText, setrightText] = useState("");
+
+//   const toggleThirdPanel = () => {
+//     setShowThirdPanel((prevState) => !prevState);
+//   };
+
+//   return (
+//     <div className="App">
+//       <SplitPane className="split-pane-col" showThirdPanel={showThirdPanel} toggleThirdPanel={toggleThirdPanel}>
+//         <SplitPaneTop onTogglePanel={toggleThirdPanel}  onSaveText={(text) => {
+//     setLeftText(text); // or setRightText(text) based on context
+//   }}/>
+//         <Divider className="separator-row" />
+//         <SplitPaneBottom showThirdPanel={showThirdPanel}>
+//           <SplitPane className="split-pane-row">
+//             <SplitPaneLeft  text={leftText} />
+//             <Divider className="separator-col" />
+//             <SplitPaneRight text={rightText} />
+//             {showThirdPanel && (
+//               <SplitPaneThird width="500" />
+//             )}
+//           </SplitPane>
+//         </SplitPaneBottom>
+//       </SplitPane>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
 
 
 // import React, { useState, useRef, useEffect } from "react";
