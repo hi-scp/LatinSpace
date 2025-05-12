@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/LatinSpace/static/css/main.5db7b44e.css",
+    "main.js": "/LatinSpace/static/js/main.49d00453.js",
+    "static/js/453.4964b41b.chunk.js": "/LatinSpace/static/js/453.4964b41b.chunk.js",
+    "index.html": "/LatinSpace/index.html",
+    "main.5db7b44e.css.map": "/LatinSpace/static/css/main.5db7b44e.css.map",
+    "main.49d00453.js.map": "/LatinSpace/static/js/main.49d00453.js.map",
+    "453.4964b41b.chunk.js.map": "/LatinSpace/static/js/453.4964b41b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5db7b44e.css",
+    "static/js/main.49d00453.js"
+  ]
+}
