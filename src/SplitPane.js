@@ -1,3 +1,4 @@
+//react imports
 import React, {
     createRef,
     useContext,
@@ -6,6 +7,11 @@ import React, {
     useState,
 } from "react";
 import SplitPaneContext from "./SplitPaneContext";
+
+//canvas imports
+import Canvas from "./Canvas";
+import { useWindowSize } from "./hooks";
+import { MODES } from "./constants"; 
 
 const SplitPane = ({ children, ...props }) => {
   const [clientHeight, setClientHeight] = useState(null);
@@ -71,10 +77,19 @@ export const Divider = (props) => {
 
 
 export const SplitPaneLeft = (text, ... props) => {
+    //panel resize setup
     const topRef = createRef();
     const { clientWidth, setClientWidth } = useContext(SplitPaneContext);
     
-  
+    //canvas settings
+    const settings = useRef({
+      stroke: 3,
+      color: "#000",
+      mode: MODES.PEN,
+    });
+    const size = useWindowSize();
+
+    //resizing panel
     useEffect(() => {
       if (!clientWidth) {
         const initial = window.innerWidth * 0.5;
@@ -87,6 +102,9 @@ export const SplitPaneLeft = (text, ... props) => {
   
     return (
       <div {...props} className="split-pane-left" ref={topRef}>
+        <div className="canvas-container">
+          <Canvas {...size} settings={settings} text={text}/>
+        </div>
       </div>
     );
   };
@@ -118,6 +136,165 @@ export const SplitPaneBottom = (props) => {
 
 
 export default SplitPane;
+
+
+
+
+
+
+
+
+
+
+// const SplitPane = ({ children, showThirdPanel, ...props }) => {
+
+// // const [leftText, setLeftText] = useState("Hello, Left!");
+// // const [rightText, setRightText] = useState("Hello, Right!");
+
+
+
+// export const SplitPaneLeft = (text, ... props) => {
+    
+
+
+//     return (
+//       <div {...props} className="split-pane-left" ref={topRef}>
+//         <div className="canvas-container">
+//           <Canvas {...size} settings={settings} text={text}/>
+//         </div>
+//       </div>
+//     );
+//   };
+
+// export const SplitPaneRight = (rightText,... props) => {
+//     const settings = useRef({
+//       stroke: 3,
+//       color: "#000",
+//       mode: MODES.PEN,
+//     });
+  
+//     const size = useWindowSize();
+//     // const [leftText, setLeftText] = useState("Hello, Left!");
+//     // const [rightText, setRightText] = useState("Hello, Right!");
+  
+//     return (
+//       <div {...props} className="split-pane-right">
+//         <div className="canvas-container">
+//           <Canvas {...size} settings={settings} text={rightText}/>
+//         </div>
+//       </div>
+//     );
+//   };
+
+
+// // export const SplitPaneTop = ({ onTogglePanel, ...props }) => {
+
+// //   return (
+// //     <div {...props} className="split-pane-top">
+// //       <button onClick={onTogglePanel}>Translation notes</button>
+// //     </div>
+// //   );
+// // };
+
+// export const SplitPaneTop = ({ onTogglePanel, onSaveText, ...props }) => {
+//   const [showInput, setShowInput] = useState(false);
+//   const [text, setText] = useState("");
+
+//   const handleSave = () => {
+//     if (onSaveText) onSaveText(text); // send text to parent
+//     setShowInput(false);
+//   };
+
+//   return (
+//     <div {...props} className="split-pane-top">
+//       <button onClick={onTogglePanel}>Toggle Third Panel</button>
+
+//       {!showInput && (
+//         <button onClick={() => setShowInput(true)}>Add Text</button>
+//       )}
+
+//       {showInput && (
+//         <div>
+//           <textarea
+//             rows={4}
+//             cols={50}
+//             value={text}
+//             onChange={(e) => setText(e.target.value)}
+//             placeholder="Type your text here..."
+//             style={{ whiteSpace: "pre-wrap", display: "block", marginTop: "0.5rem" }}
+//           />
+//           <button onClick={handleSave} style={{ marginTop: "0.5rem" }}>
+//             Save Text
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export const SplitPaneBottom = ({ showThirdPanel, children, ...props }) => {
+//   return (
+//     <div {...props} className="split-pane-bottom">
+//       {children}
+//       {/* content here */}
+//     </div>
+//   );
+// };
+
+
+// export const SplitPaneThird = ({ width, onMouseDown }) => {
+//   return (
+//     <div
+//       className="split-pane-third"
+//       style={{
+//         width: width + "px",
+//         transition: "width 0.2s ease", // Smooth transition for resizing
+//       }}
+//     >
+//       <iframe
+//         src="https://www.perseus.tufts.edu/hopper/collection?collection=Perseus:collection:Greco-Roman"
+//         height="100%"
+//         width="100%"
+//         title="Greco-Roman Collection"
+//         allowtransparency="true"
+//         style={{
+//           border: "none",
+//           height: "100%",
+//           width: "100%",
+//           objectFit: "cover", // Maintain aspect ratio
+//         }}
+//       />
+//       <Divider className="separator-col" onMouseDown={onMouseDown} />
+//     </div>
+//   );
+// };
+
+
+// export default SplitPane;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
