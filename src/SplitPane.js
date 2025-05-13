@@ -55,15 +55,16 @@ const SplitPane = ({ children, ...props }) => {
   };
 
   const onMove = (e) => {
-  if (yDividerPos.current === null && xDividerPos.current === null) return;
+    if (!yDividerPos.current && !xDividerPos.current) {
+      return;
+    }
+    const { x, y } = getClientCoordinates(e);
 
-  const { x, y } = getClientCoordinates(e);
+    setClientHeight(clientHeight + y - yDividerPos.current);
+    setClientWidth(clientWidth + x - xDividerPos.current);
 
-  setClientHeight((prev) => (prev ?? 0) + y - yDividerPos.current);
-  setClientWidth((prev) => (prev ?? 0) + x - xDividerPos.current);
-
-  yDividerPos.current = y;
-  xDividerPos.current = x;
+    yDividerPos.current = y;
+    xDividerPos.current = x;
   };
 
   const onEnd = () => {
