@@ -2,6 +2,12 @@ html,
 body {
   padding: 0;
   margin: 0;
+  overflow: hidden;  /* Prevents scrolling */
+  height: 100%;
+}
+
+body {
+  touch-action: manipulation; /* Prevents default touch behavior */
 }
 
 .App {
@@ -95,7 +101,7 @@ body {
   width: 25vw;
   background-color: rgba(0, 0, 0, 0.137);
   padding: 10px;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .separator-col {
