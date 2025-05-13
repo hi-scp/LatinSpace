@@ -41,13 +41,47 @@ const SplitPane = ({ children, ...props }) => {
     xDividerPos.current = e.clientX;
   };
 
+  const getClientCoordinates = (e) => {
+  if (e.touches && e.touches.length > 0) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }
+  return { x: e.clientX, y: e.clientY };
+  };
+
+  const onStart = (e) => {
+    const { x, y } = getClientCoordinates(e);
+    yDividerPos.current = y;
+    xDividerPos.current = x;
+  };
+
+  const onMove = (e) => {
+  if (yDividerPos.current === null && xDividerPos.current === null) return;
+
+  const { x, y } = getClientCoordinates(e);
+
+  setClientHeight((prev) => (prev ?? 0) + y - yDividerPos.current);
+  setClientWidth((prev) => (prev ?? 0) + x - xDividerPos.current);
+
+  yDividerPos.current = y;
+  xDividerPos.current = x;
+  };
+
+  const onEnd = () => {
+  yDividerPos.current = null;
+  xDividerPos.current = null;
+  };
+
   useEffect(() => {
     document.addEventListener("mouseup", onMouseHoldUp);
     document.addEventListener("mousemove", onMouseHoldMove);
+    document.addEventListener("touchend", onEnd);
+    document.addEventListener("touchmove", onMove, { passive: false });
 
     return () => {
       document.removeEventListener("mouseup", onMouseHoldUp);
       document.removeEventListener("mousemove", onMouseHoldMove);
+      document.removeEventListener("touchend", onEnd);
+      document.removeEventListener("touchmove", onMove);
     };
   });
 
@@ -60,6 +94,7 @@ const SplitPane = ({ children, ...props }) => {
           clientWidth,
           setClientWidth,
           onMouseHoldDown,
+          onStart,
         }}
       >
         {children}
@@ -70,9 +105,9 @@ const SplitPane = ({ children, ...props }) => {
 
 
 export const Divider = (props) => {
-    const { onMouseHoldDown } = useContext(SplitPaneContext);
+    const { onMouseHoldDown, onStart } = useContext(SplitPaneContext);
 
-    return <div {...props} onMouseDown={onMouseHoldDown} />;
+    return <div {...props} onMouseDown={onMouseHoldDown}  onTouchStart={onStart} />;
 };
 
 
