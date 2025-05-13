@@ -10,6 +10,33 @@ body {
   text-align: center;
 }
 
+/* .split-button {
+  background: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+} */
+
+.split-button {
+  background-color: #e2baeb; 
+  color: rgb(8, 8, 8);
+  font-size: 1.2rem;         
+  padding: 12px 24px;        
+  margin: 10px;            
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Georgia", Times, serif;
+}
+
+
+.split-button:hover {
+  background-color: #be35e0; 
+}
+
+
 .split-pane-col {
   width: 100vw;
   height: 100vh;
@@ -35,13 +62,24 @@ body {
   overflow: hidden;
 }
 
+.modal {
+  background-color: #e2baeb;
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
+
+}
+
+
 .split-pane-top {
   flex: 1;
   overflow: hidden;
-  background-color: #199828;
-  /* height: 30vh; */
+  background-color: #d789eb;
   min-height: 15vh;
   max-height: 15vh;
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
 
 }
 .split-pane-right {
@@ -49,6 +87,15 @@ body {
   overflow: hidden;
   background-color: #195498;
   text-align: left;
+}
+
+.split-pane-dict,
+.split-pane-third {
+  height: 85vh;
+  width: 25vw;
+  background-color: rgba(0, 0, 0, 0.137);
+  padding: 10px;
+  overflow: auto;
 }
 
 .separator-col {
@@ -80,46 +127,6 @@ ul a:hover {
   color: black;
 }
 
-blockquote {
-  border-left: 10px solid #ccc;
-  margin: 5.5em 0 0 0;
-  quotes: "\201C""\201D""\2018""\2019";
-  padding: 2rem 0 1rem;
-}
-
-blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-blockquote p {
-  display: inline;
-}
-
-.quote {
-  max-width: 60%;
-  text-align: right;
-  margin: auto;
-  font-style: italic;
-}
-
-.quote span {
-  font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
-
 .canvas-container {
   position: relative;
   width: min-content;
@@ -141,6 +148,18 @@ blockquote p {
   cursor: grabbing;
 }
 
+
+.canvas-container .menu-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10;
+}
+
+
 .canvas-container .menu {
   user-select: none;
   display: flex;
@@ -151,12 +170,13 @@ blockquote p {
   top: 10px;
   border-radius: 5px;
   background-color: rgba(231, 231, 231, 0.9);
-  position: absolute;
+  position: static;
 }
 
 .canvas-container .menu.right {
-  left: unset;
-  right: 10px;
+  right: unset;  
+  left: unset;   
+  position: static;
 }
 
 .canvas-container .menu hr {
