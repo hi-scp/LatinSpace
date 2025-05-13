@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+.cancel-button {
+  background-color: #d789eb; 
+  color: rgb(8, 8, 8);
+  font-size: 1.2rem;         
+  padding: 12px 24px;        
+  margin: 10px;            
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Georgia", Times, serif;
+}
+
+
+.cancel-button:hover {
+  background-color: #be35e0; 
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

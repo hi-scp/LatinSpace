@@ -216,7 +216,7 @@ const Canvas = ({ settings, textToAdd, ...rest }) => {
     ctx.font = "20px Georgia";  // Set the font size and family
     ctx.fillStyle = "black";  // Set the text color
 
-    drawMultilineText(ctx, currentText.textToAdd,width/1.75, height*1.75 )
+    drawMultilineText(ctx, currentText.textToAdd, width/1.75, height*1.75 )
     // ctx.fillText(currentText.textToAdd, width/1.75, height*1.75);
   };
 

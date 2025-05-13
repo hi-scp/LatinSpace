@@ -50,17 +50,16 @@ function App() {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
               handleTextSubmit(e.target.value);
-            } else if (e.key === "Escape") {
-              handleClose(); // This function should close or hide the input
             }
           }}
           onInput={(e) => {
             // Optional: handle input changes or updates, useful for mobile
           }}
-          placeholder="shift+enter for newline, escape to close"
+          placeholder="shift+enter for newline"
           style={{ width: "35vw" }}
           autoFocus
         />
+        <button className="cancel-button" onClick={handleClose}>Cancel</button>
         </div>
       )} 
 
