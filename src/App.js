@@ -46,6 +46,7 @@ function App() {
 
         <textarea
           onKeyDown={(e) => {
+            // Ensure Enter works correctly on desktop and mobile
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
               handleTextSubmit(e.target.value);
@@ -53,7 +54,10 @@ function App() {
               handleClose(); // This function should close or hide the input
             }
           }}
-          placeholder = "shift+enter for newline, escape to close"
+          onInput={(e) => {
+            // Optional: handle input changes or updates, useful for mobile
+          }}
+          placeholder="shift+enter for newline, escape to close"
           style={{ width: "35vw" }}
           autoFocus
         />
