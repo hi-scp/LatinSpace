@@ -193,15 +193,16 @@ const Canvas = ({ settings, textToAdd, ...rest }) => {
   };
 
 
-    const drawMultilineText = (ctx, stuff, x, y, lineHeight = 35) => {
-    // console.log(typeof stuff, "type")
-    const lines = stuff.split("\n");
+  const drawMultilineText = (ctx, text, x, y, lineHeight = 35) => {
+    const lines = text.split("\n");
+    const totalHeight = lines.length * lineHeight;
+    const startY = y + totalHeight / 2; // Start drawing from vertically centered position
+  
     for (let i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], x, y + i * lineHeight);
+      ctx.fillText(lines[i], x, startY + i * lineHeight);
     }
-    //ctx.fillText(stuff, width/1.75, height*1.75);
   };
-
+  
 
   const drawCanvas = (ctx) => {
     const currentText = textRef.current;
@@ -215,8 +216,7 @@ const Canvas = ({ settings, textToAdd, ...rest }) => {
     //DELETE LATER
     ctx.font = "20px Georgia";  // Set the font size and family
     ctx.fillStyle = "black";  // Set the text color
-
-    drawMultilineText(ctx, currentText.textToAdd, width/1.75, height*1.75 )
+    drawMultilineText(ctx, currentText.textToAdd, width/1.75, height/2 )
     // ctx.fillText(currentText.textToAdd, width/1.75, height*1.75);
   };
 
